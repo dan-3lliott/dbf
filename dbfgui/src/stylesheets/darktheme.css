@@ -1,0 +1,73 @@
+* {
+    -fx-primary: #2A2E37;
+    -fx-secondary: #FFFFFF;
+    -fx-primary-text: #ebebeb;
+    -fx-primary-hover: #4d525c;
+}
+
+.root {
+    -fx-background-color: -fx-primary;
+    -fx-font-family: Helvetica;
+    -fx-focus-color: transparent;
+    -fx-faint-focus-color: transparent;
+}
+
+.tab {
+    -fx-background-color: -fx-primary;
+    -fx-pref-width: 200;
+    -fx-pref-height: 50;
+    -fx-padding: 0;
+    -fx-border-style: hidden;
+    -fx-background-radius: 0;
+    -fx-border-radius: 0;
+    -fx-text-alignment: center;
+}
+
+.tab-label {
+    -fx-pref-width: 200;
+    -fx-text-fill: -fx-primary-text;
+    -fx-font-size: 18;
+    -fx-font-weight: bold;
+}
+
+.tab-header-background {
+    -fx-background-color: -fx-primary;
+}
+
+.tab:hover {
+    -fx-background-color: -fx-primary-hover;
+}
+
+.tab:selected {
+    -fx-border-color: -fx-secondary;
+    -fx-border-style: hidden hidden solid hidden;
+}
+
+.table-view {
+    -fx-header-color: -fx-secondary;
+    -fx-selection-bar: -fx-primary;
+}
+
+.table-view .label {
+    -fx-text-fill: -fx-primary;
+}
+
+.text-field {
+    -fx-pref-columns: 10;
+    -fx-border-radius: 5;
+}
+
+.button {
+    -fx-background-color: -fx-primary;
+    -fx-border-radius: 5;
+    -fx-border-color: -fx-secondary;
+    -fx-text-fill: -fx-primary-text;
+}
+
+.button:hover {
+    -fx-background-color: -fx-primary-hover;
+}
+
+.label {
+    -fx-text-fill: -fx-primary-text;
+}
