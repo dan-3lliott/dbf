@@ -1,10 +1,15 @@
+import com.fazecast.jSerialComm.*;
+
 public class Transmitter {
-    public void transmit(int[] pos) {
-        System.out.println(pos[0] + ": ailerons");
-        System.out.println(pos[1] + ": elevator");
-        System.out.println(pos[2] + ": rudder");
-        //serial.write(pos[0]); aileronPos
-        //serial.write(pos[1]); elevatorPos
-        //serial.write(pos[2]); rudderPos'
+    private static SerialPort serialPort;
+    public static void transmit(byte[] pos) {
+        serialPort.writeBytes(pos, 3);
+    }
+    public static boolean connectToPort(String portName) {
+        serialPort = SerialPort.getCommPort(portName);
+        return serialPort.openPort();
+    }
+    public static boolean closePort(String portName) {
+        return serialPort.closePort();
     }
 }

@@ -14,7 +14,8 @@ const int leftVal = 108;
 
 int pos = 0; //0 is both ailerons level, 2 is full right, -2 is full left
 
-int serial = 0;
+const int serialSize = 3;
+char serial[serialSize];
 
 void setup() {
   Serial.begin(9600);
@@ -23,27 +24,23 @@ void setup() {
 
 void loop() {
   if (Serial.available() > 0) {
-    serial = Serial.parseInt();
-    updatePos();
+    Serial.readBytes(serial, serialSize);
+    updatePos(serial[0]);
   }
 }
 
-void updatePos() {
-  Serial.print("current pos is ");
-  Serial.print(pos);
-  Serial.print(", going to ");
-  Serial.println(serial);
-  if (pos > serial) {
-    left(pos - serial);
+void updatePos(int aileronPos) {
+  if (pos > aileronPos) {
+    left(pos - aileronPos);
     Serial.print("shifted left ");
-    Serial.println((pos - serial));
+    Serial.println((pos - aileronPos));
   }
-  else if (pos < serial) {
+  else if (pos < aileronPos) {
     right(serial - pos);
     Serial.print("shifted right ");
-    Serial.println((serial - pos));
+    Serial.println((aileronPos - pos));
   }
-  pos = serial;
+  pos = aileronPos;
 }
 
 void right(int i) { //turn right - right aileron down, left aileron up - both servos 0

@@ -1,9 +1,0 @@
-<component name="libraryTable">
-  <library name="ardulink-core-base-2.1.1">
-    <CLASSES>
-      <root url="jar://$PROJECT_DIR$/lib/javafx-sdk-11.0.2/lib/ardulink-core-base-2.1.1.jar!/" />
-    </CLASSES>
-    <JAVADOC />
-    <SOURCES />
-  </library>
-</component>
