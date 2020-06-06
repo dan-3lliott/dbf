@@ -1,7 +1,5 @@
-import javafx.scene.Group;
+
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Line;
@@ -14,6 +12,12 @@ public class MainStage extends Stage {
     private static final int height = 900;
     private static final int controlAreaWidth = 600;
     private static final int controlAreaHeight = 600;
+    private double mX;
+    private double mY;
+    private int aileronPos = 0;
+    private int elevatorPos = 0;
+    private int rudderPos = 0;
+    private Transmitter transmitter = new Transmitter();
     public MainStage() {
         //set up window
         setTitle("don't crash ya plane g");
@@ -26,7 +30,7 @@ public class MainStage extends Stage {
         controlRect.setStroke(Color.BLACK);
         controlRect.setFill(Color.TRANSPARENT);
         //center crosshair
-        Line vertLine = new Line(width / 2, (height / 2) + 15, width / 2, (height/2) - 15);
+        Line vertLine = new Line(width / 2, (height / 2) + 15, width / 2, (height / 2) - 15);
         Line horizLine = new Line((width / 2) + 15, height / 2, (width / 2) - 15, height / 2);
         //aileron lines
         Line left1Line = new Line((width / 2) - (controlAreaWidth / 6), (height / 2) + 30, (width / 2) - (controlAreaWidth / 6), (height / 2) - 30);
@@ -48,6 +52,15 @@ public class MainStage extends Stage {
         elevNeg2Line.setStroke(Color.YELLOW);
         //create pane for control area
         Pane controlPane = new Pane(controlRect, vertLine, horizLine, left1Line, left2Line, right1Line, right2Line, elev1Line, elev2Line, elevNeg1Line, elevNeg2Line);
+        //mouse event handling
+        controlRect.setOnMouseMoved(event -> {
+            mX = event.getX();
+            mY = event.getY();
+            aileronPos = (int) ((mX - (width / 2)) / (controlAreaWidth / 6));
+            elevatorPos = (int) (((height / 2) - mY) / (controlAreaHeight / 6));
+            rudderPos = 0;
+            transmitter.transmit(new int[]{aileronPos, elevatorPos, rudderPos});
+        });
         //add scene
         setScene(new Scene(controlPane));
         //add style to the scene
